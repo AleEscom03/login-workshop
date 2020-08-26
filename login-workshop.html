@@ -1,0 +1,125 @@
+<link rel="import" href="../polymer/polymer-element.html" />
+<link rel="import" href="../paper-input/paper-input.html" />
+<link rel="import" href="../paper-checkbox/paper-checkbox.html" />
+<link rel="import" href="../paper-button/paper-button.html" />
+<link rel="import" href="../iron-icon/iron-icon.html" />
+
+<dom-module id="login-workshop">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin: 0px auto;
+        width: 100%;
+        height: 100%;
+      }
+      .overlay{
+        background-color: rgba(0,0,0,0.5);
+        width: 100%;
+        height: 100%;
+        @apply --login-workshop-overlay;
+      }
+      .containerLog{
+        background-color: whitesmoke;
+        max-width: 500px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        border-radius: 10px;
+        padding-top:10px;
+        padding-bottom:10px;
+        margin: 0px auto;
+        vertical-align: middle;
+        z-index: 2;
+      }
+      .title {
+        margin: 20px;
+        text-align: center;
+      }
+      paper-input.input {
+        --paper-input-container: {
+          margin-right: 30px;
+          margin-left: 30px;
+          padding: 5px;
+        }
+        --paper-input-container-underline-focus:{
+            color:#f16679;
+          }
+          --paper-input-container-label-focus:{
+            color:#f16679;
+        }  
+      }
+      iron-icon {
+        --iron-icon: {
+          margin-right: 10px;
+        }
+      }
+      paper-checkbox.check {
+        margin-left: 35px;
+        margin-top: 15px;
+        --paper-checkbox-unchecked-color: #f16679; 
+        --paper-checkbox-checked-color: #f16679;
+      }
+      .divbtn{
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-bottom:20px
+      }
+      paper-button.btnlogin {
+        --paper-button: {
+          background-color: #f16679;
+          color: white;
+          width: 100%;
+        }
+      }
+    </style>
+    <div class="overlay">
+      <div class="containerLog">
+        <h2 class="title">[[title]]</h2>
+      <paper-input class="input" label="Email" value="{{email}}">
+        <iron-icon src="../img/correo.png" slot="prefix"></iron-icon>
+      </paper-input>
+  
+      <paper-input class="input" label="Password" type="password" value="{{password}}">
+        <iron-icon src="../img/bloquear.png" slot="prefix"></iron-icon>
+      </paper-input>
+  
+      <paper-checkbox class="check">Remember me</paper-checkbox>
+      <div class="divbtn">
+        <br />
+        <paper-button class="btnlogin">Login</paper-button>
+      </div>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `login-workshop`
+     * Componente de login para la workshop-app.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class LoginWorkshop extends Polymer.Element {
+      static get is() {
+        return "login-workshop";
+      }
+      static get properties() {
+        return {
+          title: {
+            type: String,
+            value: "LOGIN",
+          },
+          email:{
+            type:String,
+          },
+          password:{
+            type:String,
+          }
+        };
+      }
+    }
+
+    window.customElements.define(LoginWorkshop.is, LoginWorkshop);
+  </script>
+</dom-module>
