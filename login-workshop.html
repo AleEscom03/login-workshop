@@ -12,16 +12,21 @@
         margin: 0px auto;
         width: 100%;
         height: 100%;
+        position: fixed;
+        z-index: 1;
+        @apply --login-workshop;
       }
       .overlay{
         background-color: rgba(0,0,0,0.5);
         width: 100%;
         height: 100%;
+        display: flex;
+        align-items: center;
         @apply --login-workshop-overlay;
       }
       .containerLog{
         background-color: whitesmoke;
-        max-width: 500px;
+        width: 500px;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         border-radius: 10px;
         padding-top:10px;
@@ -74,18 +79,18 @@
     <div class="overlay">
       <div class="containerLog">
         <h2 class="title">[[title]]</h2>
-      <paper-input class="input" label="Email" value="{{email}}">
-        <iron-icon src="../img/correo.png" slot="prefix"></iron-icon>
+      <paper-input id="inEmail" class="input" label="Email">
+        <iron-icon src="../login-workshop/img/correo.png" slot="prefix"></iron-icon>
       </paper-input>
   
       <paper-input class="input" label="Password" type="password" value="{{password}}">
-        <iron-icon src="../img/bloquear.png" slot="prefix"></iron-icon>
+        <iron-icon src="../login-workshop/img/bloquear.png" slot="prefix"></iron-icon>
       </paper-input>
   
       <paper-checkbox class="check">Remember me</paper-checkbox>
       <div class="divbtn">
         <br />
-        <paper-button class="btnlogin">Login</paper-button>
+        <paper-button on-click="clicked" class="btnlogin">Login</paper-button>
       </div>
       </div>
     </div>
@@ -112,11 +117,20 @@
           },
           email:{
             type:String,
+            notify:true
           },
           password:{
             type:String,
+          },
+          btnClick:{
+            type:Boolean,
+            notify:true
           }
         };
+      }
+      clicked(){
+        this.btnClick = !this.btnClick;
+        this.email = this.$.inEmail.value;
       }
     }
 
